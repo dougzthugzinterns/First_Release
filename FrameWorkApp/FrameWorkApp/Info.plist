@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UIMainStoryboardFile</key>
+	<string>MainStoryboard</string>
+	<key>MinimumOSVersion</key>
+	<string>5.0</string>
+	<key>CFBundleIconFiles</key>
+	<array>
+		<string>Safe-driving-mate-app-splash-screen copy</string>
+		<string>Safe-driving-mate-app-splash-screen copy 2</string>
+	</array>
+	<key>CFBundleDisplayName</key>
+	<string>Safe Driving Mate</string>
+	<key>CFBundleIdentifier</key>
+	<string>SDM</string>
+	<key>CFBundleVersion</key>
+	<string>1.0</string>
+</dict>
+</plist>
