@@ -17,11 +17,9 @@
 		<string>Safe-driving-mate-app-splash-screen copy</string>
 		<string>Safe-driving-mate-app-splash-screen copy 2</string>
 	</array>
-	<key>CFBundleDisplayName</key>
-	<string>Safe Driving Mate</string>
-	<key>CFBundleIdentifier</key>
-	<string>SDM</string>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
+	<key>CFBundleDisplayName</key>
+	<string>SDM</string>
 </dict>
 </plist>
