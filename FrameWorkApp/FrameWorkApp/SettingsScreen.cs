@@ -12,6 +12,10 @@ namespace FrameWorkApp
 		public SettingsScreen (IntPtr handle) : base (handle)
 		{
 		}
+		public override UIInterfaceOrientationMask GetSupportedInterfaceOrientations ()
+		{
+			return UIInterfaceOrientationMask.Portrait;
+		}
 	
 	}
 }

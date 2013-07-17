@@ -26,8 +26,8 @@ namespace FrameWorkApp
 		//const double SPEED_THRESHOLD_ACCEL = 100;
 		//Declaration Statements
 
-		private const double SPEED_THRESHOLD_BRAKING = 5;
-		private const double SPEED_THRESHOLD_STARTS = 5;
+		private const double SPEED_THRESHOLD_BRAKING = 4;
+		private const double SPEED_THRESHOLD_STARTS = 4;
 		//Type Codes for Events
 		private const int UNKNOWN_EVENT_TYPE = 0;
 		private const int HARD_BRAKE_TYPE = 1;
@@ -61,7 +61,7 @@ namespace FrameWorkApp
 			isCountingInitialSpeed = false;
 			isCountingFinalSpeed = false;
 			//threshold for erratic behavior in G's
-			threshold = .2;
+			threshold = .24;
 			maxThresh = 1.2;
 			eventcount = 0;
 			//true if event is in progress
@@ -71,6 +71,11 @@ namespace FrameWorkApp
 			currentSpeed = 0;
 			avgaccel = 0;
 			currentMaxAvgAccel = 0;
+		}
+
+		public override UIInterfaceOrientationMask GetSupportedInterfaceOrientations ()
+		{
+			return UIInterfaceOrientationMask.Portrait;
 		}
 
 		public override void DidReceiveMemoryWarning ()

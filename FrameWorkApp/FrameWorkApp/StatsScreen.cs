@@ -15,10 +15,14 @@ namespace FrameWorkApp
 			currentUser = fileManager.readUserFile ();
 		}
 
+		public override UIInterfaceOrientationMask GetSupportedInterfaceOrientations ()
+		{
+			return UIInterfaceOrientationMask.Portrait;
+		}
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			totalDistanceLabel.Text = currentUser.TotalDistance.ToString ();
+			totalDistanceLabel.Text = currentUser.TotalDistance.ToString ("0.0");
 			totalNumberOfEventsLabel.Text = currentUser.TotalNumberOfEvents.ToString ();
 			totalHardStartsLabel.Text = currentUser.TotalHardStarts.ToString ();
 			totalHardStopsLabel.Text = currentUser.TotalHardStops.ToString ();

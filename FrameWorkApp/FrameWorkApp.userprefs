@@ -1,8 +1,21 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhone" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget.Jon Freer’s iPhone" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="FrameWorkApp/GoogleMapScreen.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhone" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneDeviceTarget.David Gayda’s iPhone" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="FrameWorkApp/MenuScreenTiles.cs">
     <Files>
-      <File FileName="FrameWorkApp/GoogleMapScreen.cs" Line="129" Column="1" />
+      <File FileName="FrameWorkApp/GoogleMapScreen.cs" Line="1" Column="1" />
+      <File FileName="FrameWorkApp/StopScreen.cs" Line="1" Column="1" />
+      <File FileName="FrameWorkApp/TripSummaryScreen.cs" Line="1" Column="1" />
+      <File FileName="FrameWorkApp/Helper Classes/RawGPS.cs" Line="1" Column="1" />
+      <File FileName="FrameWorkApp/Helper Classes/GoogleMapsDirectionService.cs" Line="1" Column="1" />
+      <File FileName="FrameWorkApp/Helper Classes/User.cs" Line="1" Column="1" />
+      <File FileName="FrameWorkApp/StatsScreen.cs" Line="1" Column="1" />
+      <File FileName="FrameWorkApp/Helper Classes/SDMFileManager.cs" Line="1" Column="1" />
+      <File FileName="FrameWorkApp/Main.cs" Line="1" Column="1" />
+      <File FileName="FrameWorkApp/MainViewController.cs" Line="1" Column="1" />
+      <File FileName="FrameWorkApp/MenuScreen.cs" Line="1" Column="1" />
+      <File FileName="FrameWorkApp/MenuScreenTiles.cs" Line="14" Column="4" />
+      <File FileName="FrameWorkApp/SettingsScreen.cs" Line="1" Column="1" />
+      <File FileName="FrameWorkApp/TripLogScreen.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -16,6 +16,12 @@ namespace FrameWorkApp
 		private static Event[] importedGpsEvents;
 		double totalDistance;
 		int pointChange=0;
+		const int UNKNOWN_EVENT_TYPE= 0;
+		const int HARD_BRAKE_TYPE= 1;
+		const int HARD_ACCEL_TYPE= 2;
+		private int numberOfStops = 0;
+		private int numberOfStarts = 0;
+
 		public TripSummaryScreen (IntPtr handle) : base (handle)
 		{
 			User currentUser = fileManager.readUserFile ();
@@ -25,15 +31,31 @@ namespace FrameWorkApp
 			importedGpsEvents=fileManager.readDataFromTripEventFile ();
 			fileManager.addDataToTripLogFile(new Trip(DateTime.Now, importedGpsEvents.Length));
 
+
+			foreach (var e in importedGpsEvents) {
+				if (e.Type== HARD_ACCEL_TYPE) {
+					numberOfStarts++;
+				}
+				if (e.Type == HARD_BRAKE_TYPE) {
+					numberOfStops++;
+				}
+			}
 			//Clear Current Trip
 			fileManager.clearCurrentTripEventFile();
 			fileManager.clearCurrentTripDistanceFile();
 
 			//Update User Data
-			pointChange=currentUser.updateData ((int)totalDistance, StopScreen.numberHardStops, StopScreen.numberHardStarts);
+			currentUser.updateData (totalDistance, numberOfStops, numberOfStarts);
+			pointChange = currentUser.getCurrentTripPoints (totalDistance, numberOfStops, numberOfStarts);
 
 			fileManager.updateUserFile (currentUser);
 		}
+
+		public override UIInterfaceOrientationMask GetSupportedInterfaceOrientations ()
+		{
+			return UIInterfaceOrientationMask.Portrait;
+		}
+
 		public override void ViewWillAppear (bool animated)
 		{
 			base.ViewWillAppear (animated);
@@ -44,16 +66,16 @@ namespace FrameWorkApp
 		{
 			base.ViewDidLoad ();
 			//Updates tripSummaryEventLabel displaying events from this trip
-			distanceLabel.Text = rawGPS.convertMetersToKilometers(rawGPS.CalculateDistanceTraveled(new List<CLLocation>(fileManager.readDataFromTripDistanceFile()))).ToString();
-			hardBrakesLabel.Text = StopScreen.numberHardStops.ToString ();
-			numHardStartLabel.Text = StopScreen.numberHardStarts.ToString ();
+			//distanceLabel.Text = rawGPS.convertMetersToKilometers(rawGPS.CalculateDistanceTraveled(new List<CLLocation>(fileManager.readDataFromTripDistanceFile()))).ToString("0.0");
+			hardBrakesLabel.Text = numberOfStops.ToString ();
+			numHardStartLabel.Text = numberOfStarts.ToString ();
 			//fastAccelsLabel.Text = StopScreen.numberHardAccel.ToString ();
-			double totalNumberofEvents = (StopScreen.numberHardStops) + (StopScreen.numberHardStarts);
+			totalBreakAcessLabel.Text = (numberOfStops + numberOfStarts).ToString();
 			//totalBreakAcessLabel.Text = StopScreen.numberHardAccel.ToString ();
 			pointsEarnedLabel.Text = pointChange.ToString ();
 			//tripSummaryEventsLabel.Text = StopScreenn.fileManager.readDataFromTripEventFile ().Length.ToString();
 			tripSummaryEventsLabel.Text = StopScreen.eventcount.ToString ();
-			distanceLabel.Text = totalDistance.ToString ();
+			distanceLabel.Text = totalDistance.ToString ("0.0");
 		}
 
 		partial void toHome (NSObject sender)

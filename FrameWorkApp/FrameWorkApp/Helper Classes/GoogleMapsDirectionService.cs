@@ -9,6 +9,7 @@ namespace FrameWorkApp
 	public class GoogleMapsDirectionService
 	{
 		private List<CLLocationCoordinate2D> coordinatesToPlotPathWith;
+		private static CLLocationCoordinate2D coordinateInLastStep = new CLLocationCoordinate2D (-500, -500);
 		const String requestUrl = "http://maps.google.com/maps/api/directions/xml";
 		const int NUMBER_OF_CALLOUT_ATTEMPTS = 6;
 		public GoogleMapsDirectionService (List<CLLocationCoordinate2D> coordsToPlotPath)
@@ -33,6 +34,7 @@ namespace FrameWorkApp
 		}
 
 		public List<Google.Maps.Polyline> getPathsFromSingleCallout(System.Xml.XmlDocument xmlString){
+
 			List<Google.Maps.Polyline> listofPolylinesObtainedFromSingleCallout = new List<Google.Maps.Polyline> ();
 			var legs = xmlString.SelectNodes ("DirectionsResponse/route/leg");
 			foreach (System.Xml.XmlNode singleLeg in legs) {
@@ -45,6 +47,11 @@ namespace FrameWorkApp
 					List<CLLocationCoordinate2D> decodedCoordinates = DecodePolylinePoints (encodedPolylinePoints);
 					foreach (CLLocationCoordinate2D point in decodedCoordinates) {
 						currentMutablePath.AddCoordinate (point);
+						if (decodedCoordinates.Count == 1 && coordinateInLastStep.Latitude != -500) {
+							currentMutablePath.AddCoordinate (coordinateInLastStep);
+						}
+						coordinateInLastStep = point;
+
 					}
 					currentPolyline.Path = currentMutablePath;
 					listofPolylinesObtainedFromSingleCallout.Add (currentPolyline);
@@ -132,7 +139,7 @@ namespace FrameWorkApp
 			}
 			requestURLWithParameters += "&sensor=true&units=metric";
 			Console.WriteLine("request URL"+requestURLWithParameters);
-			
+			Console.WriteLine ("Start and end points of the service callout"+originLatitude+","+originLongitude+","+destinationLatitude+","+destinationLongitude);
 			return requestURLWithParameters;
 
 		}
@@ -171,6 +178,11 @@ namespace FrameWorkApp
 						numberOfCallouts++;
 						List<Polyline> listOfPolyLinesForThisCallout = getPathsFromSingleCallout(calloutXMLDocument);
 						foreach(Polyline eachPolyLine in listOfPolyLinesForThisCallout){
+							Console.WriteLine("Starting and ending points of polyline");
+							foreach(CLLocationCoordinate2D point in DecodePolylinePoints(eachPolyLine.Path.EncodedPath)){
+
+								Console.WriteLine(point.Latitude.ToString() + ","+point.Longitude.ToString());
+							}
 							allPolylinesToShowOnMap.Add(eachPolyLine);
 						}
 					}

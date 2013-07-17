@@ -20,10 +20,13 @@ namespace FrameWorkApp
 			// Custom initialization
 		}
 
-		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
+		public override UIInterfaceOrientationMask GetSupportedInterfaceOrientations ()
 		{
-			// Return true for supported orientations
-			return (toInterfaceOrientation != UIInterfaceOrientation.PortraitUpsideDown);
+			return UIInterfaceOrientationMask.Portrait;
+		}
+		public override UIInterfaceOrientation PreferredInterfaceOrientationForPresentation ()
+		{
+			return UIInterfaceOrientation.Portrait;
 		}
 
 		public override void DidReceiveMemoryWarning ()

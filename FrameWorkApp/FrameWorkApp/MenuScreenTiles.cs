@@ -13,6 +13,15 @@ namespace FrameWorkApp
 		{
 		}
 
+		public override UIInterfaceOrientationMask GetSupportedInterfaceOrientations ()
+		{
+			return UIInterfaceOrientationMask.Portrait;
+		}
+		public override UIInterfaceOrientation PreferredInterfaceOrientationForPresentation ()
+		{
+			return UIInterfaceOrientation.Portrait;
+		}
+
 		public override void ViewWillAppear (bool animated)
 		{
 			base.ViewWillAppear (animated);

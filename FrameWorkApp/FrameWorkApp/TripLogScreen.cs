@@ -16,6 +16,10 @@ namespace FrameWorkApp
 		{
 			tripHistory =  new SDMFileManager().readDataFromTripLogFile();
 		}
+		public override UIInterfaceOrientationMask GetSupportedInterfaceOrientations ()
+		{
+			return UIInterfaceOrientationMask.Portrait;
+		}
 
 		//Update Trip Log Table
 		private void updateTripLogTableView(){

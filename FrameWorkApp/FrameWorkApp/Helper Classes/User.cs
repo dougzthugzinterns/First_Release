@@ -35,19 +35,25 @@ namespace FrameWorkApp
 			set{ this.totalHardStops = value;}
 		}
 		public int TotalPoints {
-			get { return totalNumberOfEvents;}
-			set { this.totalNumberOfEvents = value;}
+			get { return totalPoints;}
+			set { this.totalPoints = value;}
 		}
-		public int updateData (double tripDistance, int numOfStops, int numOfStarts)
+		public void updateData (double tripDistance, int numOfStops, int numOfStarts)
 		{
 			totalDistance += tripDistance;
 			totalNumberOfEvents += numOfStops + numOfStarts;
 			totalHardStops += numOfStops;
 			totalHardStarts += numOfStarts;
 
-			totalPoints = Math.Max ((totalPoints + (int)tripDistance + ((-3) * (numOfStops+numOfStarts))),0);
+			totalPoints = totalPoints + Math.Max (this.getCurrentTripPoints(tripDistance,numOfStops,numOfStarts),0);
 
-			                        return (totalPoints + (int)tripDistance + ((-3) * (numOfStops+numOfStarts)));
+			                        //return ((int)tripDistance + ((-3) * (numOfStops+numOfStarts)));
+		}
+
+		public int getCurrentTripPoints (double tripDistance, int numOfStops, int numOfStarts)
+		{
+			return ((int)(tripDistance*10) + ((-2*10) * (numOfStops+numOfStarts)));
+
 		}
 	}
 }
